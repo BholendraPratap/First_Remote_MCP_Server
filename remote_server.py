@@ -3,6 +3,7 @@ import os
 import aiosqlite  # Changed: sqlite3 → aiosqlite
 import tempfile
 import json
+import asyncio
 # Use temporary directory which should be writable
 TEMP_DIR = tempfile.gettempdir()
 DB_PATH = os.path.join(TEMP_DIR, "expenses.db")
