@@ -7,7 +7,7 @@ import asyncio
 # Use temporary directory which should be writable
 TEMP_DIR = tempfile.gettempdir()
 # DB_PATH = os.path.join(TEMP_DIR, "expenses.db")
-DB_PATH = os.path.join(os.getcwd(), "expenses.db")
+DB_PATH = os.path.join("/tmp", "expenses.db")
 CATEGORIES_PATH = os.path.join(os.path.dirname(__file__), "categories.json")
 
 print(f"Database path: {DB_PATH}")
@@ -19,7 +19,8 @@ def init_db():  # Keep as sync for initialization
         # Use synchronous sqlite3 just for initialization
         import sqlite3
         with sqlite3.connect(DB_PATH) as c:
-            c.execute("PRAGMA journal_mode=WAL")
+            #c.execute("PRAGMA journal_mode=WAL")
+            c.execute("PRAGMA journal_mode=DELETE")
             c.execute("""
                 CREATE TABLE IF NOT EXISTS expenses(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
