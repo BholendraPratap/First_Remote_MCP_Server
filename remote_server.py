@@ -145,5 +145,6 @@ def server_info():
 
 # Start the server
 if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=os.getenv("PORT", 8000))
+    port = int(os.getenv("PORT", 8000)) # Ensure port is an integer
+    mcp.run(transport="http", host="0.0.0.0", port=port)
     
